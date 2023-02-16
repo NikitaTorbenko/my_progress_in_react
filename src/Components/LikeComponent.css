@@ -1,0 +1,19 @@
+.like_block {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.like__count {
+    background-color: #fff;
+    padding: 10px 15px;
+    border-radius: 50%;
+}
+
+.like__btn {
+    font-size: 1.1rem;
+    padding: 5px 15px;
+    margin-left: 30px;
+    border: none;
+    border-radius: 20px;
+}
