@@ -1,10 +1,9 @@
 import React from "react";
-import './PostsComponent.css'
-import LikeComponent from "./LikeComponent";    
+import "./PostsComponent.css";
+import LikeComponent from "./LikeComponent";
 
 const PostsComponent = () => {
   const url = "https://jsonplaceholder.typicode.com/posts";
-
 
   const [posts, setPosts] = React.useState([]);
 
@@ -17,24 +16,26 @@ const PostsComponent = () => {
   React.useEffect(() => {
     getPosts();
   }, []);
-
   return (
-    <div className="main">
-      {posts.length ? (
-        posts.map((item) => 
-        <div className="card" key={item.id}>
-            <div className="card__title">
-                {item.title}
+    <>
+      <button className="onli_liked">
+        Только лайкнутые
+      </button>
+      <div className="main">
+        {posts.length ? (
+          posts.map((item) => (
+            <div className="card" key={item.id}>
+              <div className="card__title">{item.title}</div>
+              <div className="card__body">{item.body}</div>
+              <LikeComponent/>
             </div>
-            <div className="card__body">
-                {item.body} 
-            </div>
-            <LikeComponent/>
-        </div>)
-      ) : (
-        <div>Loading...</div>
-      )}
-    </div>
+
+          ))
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div>
+    </>
   );
 };
 

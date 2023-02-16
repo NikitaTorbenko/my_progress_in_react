@@ -3,8 +3,6 @@ import "./LikeComponent.css";
 
 const LikeComponent = () => {
   const [likeCount, setLikeCount] = React.useState(0);
-  
-  
 
   const like = () => {
     console.log("click");
