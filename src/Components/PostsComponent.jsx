@@ -2,11 +2,6 @@ import React from "react";
 import "./PostsComponent.css";
 import Post from "./Post";
 
-// const ITEMS_ON_PAGE = 9;
-
-// текущая 2
-// posts.slice(ITEMS_ON_PAGE * current_page, current_page * ITEMS_ON_PAGE + ITEMS_ON_PAGE)
-
 const PostsComponent = () => {
   const url = "https://jsonplaceholder.typicode.com/posts";
 
@@ -34,6 +29,7 @@ const PostsComponent = () => {
 
   const onLiked = () => {
     setOnlyLiked((prev) => !prev);
+    // posts.filter(item => item.likes > 0 ? item : '')
   };
 
   const nextPage = () => {
@@ -44,12 +40,29 @@ const PostsComponent = () => {
     setCurrentPage((prev) => prev - 1);
   };
 
-  function currentPageHandler(arr){
+  function currentPageHandler(arr) {
     return arr.slice(
-        currentPage * countPostOnPage,
-        currentPage * countPostOnPage + countPostOnPage
-      )
+      currentPage * countPostOnPage,
+      currentPage * countPostOnPage + countPostOnPage
+    );
   }
+
+  function updatePosts(item) {
+    const index = posts.findIndex((post) => post.id === item.id);
+
+    console.log("UPDATE");
+    console.log(item);
+
+    setPosts((prev) => [
+      ...prev.slice(0, index),
+      item,
+      ...prev.slice(index + 1),
+    ]);
+  }
+
+  // function onlyL() {
+  //   posts.filter(item => item.likes > 0 ? item : '')
+  // }
 
   return (
     <>
@@ -60,10 +73,14 @@ const PostsComponent = () => {
         {posts.length ? (
           <>
             <div className="posts">
-              {currentPageHandler(posts)
-                .map((item) => (
-                  <Post key={item.id} onlyLike={onlyLiked} item={item} />
-                ))}
+              {currentPageHandler(posts).map((item) => (
+                <Post
+                  updatePosts={updatePosts}
+                  key={item.id}
+                  onlyLike={onlyLiked}
+                  item={item}
+                />
+              ))}
             </div>
             <button
               disabled={currentPage <= 1}
