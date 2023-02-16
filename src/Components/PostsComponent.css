@@ -1,8 +1,8 @@
-.main {
+/* .main {
   display: flex;
   flex-wrap: wrap;
   font-family: calibri, serif;
-}
+} */
 
 .card {
   width: 500px;
@@ -32,4 +32,13 @@
   margin-top: 50px;
   cursor: pointer;
   transform: translateX(-50%);
+}
+
+.posts {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+}
+
+.btn__pak {
+    
 }
